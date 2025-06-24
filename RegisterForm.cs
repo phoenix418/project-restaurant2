@@ -13,33 +13,21 @@ namespace ресторан_проект
 {
     public partial class RegisterForm : Form
     {
-
         public RegisterForm()
         {
             InitializeComponent();
 
         }
-
-        private void RegisterForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void passwordTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void registerButton_Click_1(object sender, EventArgs e)
         {
-            string username = usernameTextBox.Text.Trim();
-            string password = passwordTextBox.Text.Trim();
+            string username = usernameTextBox.Text;
+            string password = passwordTextBox.Text;
             UserRole role = UserRole.Client;
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
                 return;
-            }       
+            }
             if (AuthService.Users.Any(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase)))
             {
                 MessageBox.Show("Пользователь с таким именем уже существует.");
@@ -48,6 +36,20 @@ namespace ресторан_проект
             AuthService.Register(username, password, role);
             MessageBox.Show("Регистрация прошла успешно!");
             this.Close();
+        }
+
+        private void RegisterForm_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void passwordTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
